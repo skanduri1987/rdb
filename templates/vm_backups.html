@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% from 'helpers.html' import render_vm_statuses %}
+
+{% block content %}
+  <div class="container-fluid h-100">
+    {% include 'navbar.html' %}
+    <div class="row mt-5 h-75">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">VM Instance Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Snapshot Disk Size</th>
+              <th scope="col">Snapshot Frequency</th>
+              <th scope="col">Last 2 Snapshots Status</th>
+              <th scope="col">Snapshot Validation</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+              <tr>
+                <td>{{ row['name'] }}</td>
+                <td>{{ row['category'] }}</td>
+                <td>{{ row['disk_size'] }}G</td>
+                <td></td>
+                <td>{{ render_vm_statuses(row['snapshot_statuses']) }}</td>
+                <td>{{ row['latest_snapshot'] }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

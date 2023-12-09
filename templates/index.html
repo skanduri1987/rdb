@@ -1,0 +1,76 @@
+{% from 'bootstrap5/form.html' import render_form %}
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+  <div class="main-content d-flex">
+    <!-- <div class="row mt-5 h-75"> -->
+      <!-- <div class="col-2"> -->
+        <!-- <div class="card card-body h-100"> -->
+          <!-- <h3 class="card-title text-center">Alerts Panel</h3> -->
+          <aside class="side-bar">
+            <div class="alert-filter-form">
+              <h4 class="form-heading">Alert Filters: </h4>
+              <div class="alert-filter-form-inner">
+                {{ render_form(form, method='get') }}
+              </div>
+            </div>
+            <div class="alert-panel">
+                <div class="alert-panel-title">
+                    <h4>Alerts Panel</h4>
+                </div>
+                <div class="alert-panel-main">
+                  <ul class="alert-panel-main-inner">
+                      {% for alert in alerts %}
+                        <li>
+                            <p>{{ alert.message }}</p>
+                            <span>{{ alert.created_at }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+          </aside>
+          <!-- {% for alert in alerts %}
+            <div class="alert-item mb-2">
+              <h6>{{ alert.message }}</h6>
+              <h6 class="text-muted">{{ alert.created_at }}</h6>
+            </div>
+          {% endfor %} -->
+        <!-- </div> -->
+      <!-- </div> -->
+      {% include 'dashboard.html' %}
+    <!-- </div> -->
+  <!-- </div> -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <a href="index.html"><span class="logo-text">BFD.</span></a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <aside class="side-bar">
+        <div class="alert-filter-form">
+          <h4 class="form-heading">Alert Filters: </h4>
+          <div class="alert-filter-form-inner">
+            {{ render_form(form, method='get') }}
+          </div>
+        </div>
+        <div class="alert-panel">
+            <div class="alert-panel-title">
+                <h4>Alerts Panel</h4>
+            </div>
+            <div class="alert-panel-main">
+              {% for alert in alerts %}
+                <ul class="alert-panel-main-inner">
+                    <li>
+                        <p>{{ alert.message }}</p>
+                        <span>{{ alert.created_at }}</span>
+                    </li>
+                </ul>
+              {% endfor %}
+            </div>
+        </div>
+      </aside>
+    </div>
+</div>
+{% endblock %}

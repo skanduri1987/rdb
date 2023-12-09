@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% from 'helpers.html' import render_db_backup_statuses %}
+
+{% block content %}
+  <div class="overall-table-page">
+    {% include 'navbar.html' %}
+    <div class="overall-backups-table">
+      <div class="main-heading">
+        <a href="/">
+            <div class="back-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.0604 21.546C16.3417 21.2647 16.4996 20.8832 16.4996 20.4855C16.4996 20.0877 16.3417 19.7063 16.0604 19.425L8.63545 12L16.0604 4.57499C16.3337 4.29209 16.4849 3.91318 16.4815 3.51989C16.478 3.12659 16.3203 2.75037 16.0422 2.47226C15.7641 2.19415 15.3878 2.0364 14.9946 2.03298C14.6013 2.02956 14.2224 2.18075 13.9394 2.45399L5.45395 10.9395C5.17274 11.2208 5.01477 11.6022 5.01477 12C5.01477 12.3977 5.17274 12.7792 5.45395 13.0605L13.9395 21.546C14.2207 21.8272 14.6022 21.9852 15 21.9852C15.3977 21.9852 15.7792 21.8272 16.0604 21.546Z" fill="white"/>
+                </svg>
+            </div>
+        </a>
+        <h1>BFD Service Resiliency Dashboard</h1>
+    </div>
+    <div class="overall-backups-table-main">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Instance Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">DB Size</th>
+          <th scope="col">Backup Status Today</th>
+          <th scope="col">Last 5 Backup Status</th>
+          <th scope="col">Backup Validation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+          <tr>
+            <td>{{ row['name'] }}</td>
+            <td>{{ row['category'] }}</td>
+            <td>{{ row['disk_size'] }}G</td>
+            <td>{{ row['todays_backup'] }}</td>
+            <td>{{ render_db_backup_statuses(row['statuses']) }}</td>
+            <td>{{ row['latest_backup'] }}</td>
+          </tr>
+          
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+{% endblock %}

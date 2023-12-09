@@ -1,0 +1,32 @@
+{% macro render_vm_statuses(val) %}
+  {% for status in val %}
+    {% if status == 'READY' %}
+      <span class="badge bg-success me-3">&emsp;</span>
+    {% else %}
+      <span class="badge bg-danger me-3">&emsp;</span>
+    {% endif %}
+
+  {% endfor %}
+{% endmacro %}
+
+{% macro render_db_backup_statuses(val) %}
+  {% for status in val %}
+    {% if status == 'SUCCESSFUL' %}
+      <span class="badge bg-success me-3">&emsp;</span>
+    {% else %}
+      <span class="badge bg-danger me-3">&emsp;</span>
+    {% endif %}
+
+  {% endfor %}
+{% endmacro %}
+
+{% macro render_cluster_backup_states(val) %}
+  {% for status in val %}
+    {% if status == 'SUCCEEDED' %}
+      <span class="badge bg-success me-3">&emsp;</span>
+    {% else %}
+      <span class="badge bg-danger me-3">&emsp;</span>
+    {% endif %}
+
+  {% endfor %}
+{% endmacro %}

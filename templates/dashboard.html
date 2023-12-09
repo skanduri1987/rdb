@@ -1,0 +1,140 @@
+{% from 'bootstrap5/form.html' import render_form %}
+<div class="dash-main-content">
+  <div class="dash-main-content-inner">
+    <div class="main-heading">
+      <h1>BFD Service Resiliency Dashboard</h1>
+      <div class="btn-grp">
+          <a href="#" class="btn btn-secondary">Btn-2</a>
+          <a href="{{ url_for('credentials') }}" class="btn btn-primary">Manage Credentials</a>
+      </div>
+  </div>
+    <div class="over-backup-health">
+      <h3>Overall Backups Health</h3>
+      <div class="row justify-content-center col-gaps">
+        <div class="col-md-4 col-sm-6 col-12" role="button" onclick="window.location = '{{ url_for('list_db_backups') }}'">
+          <div class="over-backup-inner">
+            <h4>Cloudsql Instances Backups Health</h4>
+            <span>{{ dbs_backup_count or 0 }}</span>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12" role="button" onclick="window.location = '{{ url_for('list_vm_backups') }}'">
+          <div class="over-backup-inner over-backup-inner-2">
+            <h4>Critical VM Instances Config Backups Health</h4>
+            <span>{{ vm_backup_count or 0 }}</span>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12" role="button" onclick="window.location = '{{ url_for('list_cluster_backups') }}'">
+          <div class="over-backup-inner over-backup-inner-3">
+            <h4>Critical GKE Config Backups Health</h4>
+            <span>{{ cluster_backup_count or 0 }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="over-backup-health">
+      <h3>Overall BFD Services Health</h3>
+      <div class="row justify-content-center col-gaps">
+        <div class="col-md-4 col-sm-6 col-12" role="button">
+          <div class="over-backup-inner {{ db_health_color }}">
+            <h4>Cloudsql Instances Services Health</h4>
+            <span>{{ db_running_count or 0  }}/{{ dbs_backup_count or 0 }}</span>
+          </div>
+        </div>
+        <div class=" col-md-4 col-sm-6 col-12" role="button">
+          <div class="over-backup-inner over-backup-inner-2 {{ vm_health_color }}">
+            <h4>Critical VM Instances Health</h4>
+            <span>{{ vm_running_count or 0 }}/{{ vm_backup_count or 0 }}</span>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12" role="button">
+          <div class="over-backup-inner over-backup-inner-3">
+            <h4>Critical BFD Hadoop Services Health</h4>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer">
+          <p>Last refreshed: {{ now }}</p>
+      </div>
+  </footer>
+  </div>
+</div>
+
+
+
+<!-- <main class="dash-main-content">
+  <div class="dash-main-content-inner">
+      <div class="main-heading">
+          <h1>BFD Service Resiliency Dashboard</h1>
+          <div class="btn-grp">
+              <a href="#" class="btn btn-secondary">Btn-2</a>
+              <a href="manage-credentials.html" class="btn btn-primary">Manage Credentials</a>
+          </div>
+      </div>
+      <div class="over-backup-health">
+          <h3>Overall Backups Health</h3>
+          <div class="row justify-content-center col-gaps">
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner">
+                          <h4>Cloudsql Instances Backups Health</h4>
+                          <span>3</span>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner over-backup-inner-2">
+                          <h4>Critical VM Instances Config Backups Health</h4>
+                          <span>8</span>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner over-backup-inner-3">
+                          <h4>Critical GKE Config Backups Health</h4>
+                          <span>1</span>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="over-backup-health">
+          <h3>Overall BFD Services Health</h3>
+          <div class="row justify-content-center col-gaps">
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner">
+                          <h4>Cloudsql Instances Services Health</h4>
+                          <span>2/3</span>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner over-backup-inner-2">
+                          <h4>Critical VM Instances Health</h4>
+                          <span>3/8</span>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-4 col-sm-6 col-12">
+                  <a href="overall-Backups-Table.html">
+                      <div class="over-backup-inner over-backup-inner-3">
+                          <h4>Critical BFD Hadoop Services Health</h4>
+                          <span>1</span>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <footer>
+      <div class="footer">
+          <p>Last refreshed: 07/10/23 5:17AM</p>
+      </div>
+  </footer>
+</main> -->

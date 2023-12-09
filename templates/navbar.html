@@ -1,0 +1,37 @@
+<!-- {% from 'bootstrap5/utils.html' import render_messages %}
+<div class="row">
+  <div class="col mt-1">
+    {% if request.path != '/' %}
+      <a href="/" class="float-end">Go back</a>
+    {% else %}
+      <a href="{{ url_for('credentials') }}" class="float-end">Manage credentials</a>
+    {% endif %}
+  </div>
+</div>
+<div class="row">
+  <div class="col text-center mt-1">
+    <a class="navbar-brand fw-bold" style="font-size: 32px" href="/">BFD Service Resiliency Dashboard</a>
+  </div>
+</div>
+{{ render_messages(dismissible=True) }} -->
+
+{% from 'bootstrap5/utils.html' import render_messages %}
+<header>
+  <div class="top-bar d-flex">
+      <div class="logo d-flex justify-content-center align-items-center h-100">
+          <a href="../"><span class="logo-text">BFD.</span></a>
+      </div>
+      <div class="main-nav d-flex align-items-center justify-content-end">
+          <a href="#offcanvasExample" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample">
+              <div class="toggle-menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M480 224H32c-17.673 0-32 14.327-32 32s14.327 32 32 32h448c17.673 0 32-14.327 32-32s-14.327-32-32-32zM32 138.667h448c17.673 0 32-14.327 32-32s-14.327-32-32-32H32c-17.673 0-32 14.327-32 32s14.327 32 32 32zM480 373.333H32c-17.673 0-32 14.327-32 32s14.327 32 32 32h448c17.673 0 32-14.327 32-32s-14.327-32-32-32z" opacity="1" data-original="#000000"></path></g></svg>
+              </div>
+          </a>
+      </div>
+  </div>
+</header>
+{{ render_messages(dismissible=True) }}
+
+
+
+
